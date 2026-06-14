@@ -1,0 +1,9 @@
+.repo/
+.deepseek/
+build/
+dockerfile/
+docs/
+linux/
+prebuild/
+scripts/
+u-boot/
