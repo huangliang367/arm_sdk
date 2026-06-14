@@ -1,6 +1,18 @@
 .PHONY: all repo manifest docker-setup docker-run build
 
 # ============================================================
+# Proxy (optional) — accelerates repo sync and git clones
+# Usage: make PROXY=http://proxy:port all
+# ============================================================
+PROXY ?=
+ifneq ($(PROXY),)
+export HTTP_PROXY  := $(PROXY)
+export HTTPS_PROXY := $(PROXY)
+export http_proxy  := $(PROXY)
+export https_proxy := $(PROXY)
+endif
+
+# ============================================================
 # Default target: run the full pipeline
 # ============================================================
 all: repo manifest docker-setup docker-run build
