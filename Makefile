@@ -52,7 +52,11 @@ manifest: repo
 docker-setup: manifest
 	@echo "==> Checking Docker..."
 	@if command -v docker >/dev/null 2>&1; then \
-		echo "Docker already installed: $$(docker --version)"; \
+		if docker info >/dev/null 2>&1; then \
+			echo "Docker already installed: $$(docker --version)"; \
+		else \
+			echo "Docker already installed: $$(sudo docker --version)"; \
+		fi; \
 	else \
 		echo "Docker not found, installing..."; \
 		if [ -f /etc/debian_version ]; then \
